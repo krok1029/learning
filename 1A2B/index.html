@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <button id="start">Play Game</button>
+    <label id="sign"></label>
+    <hr />
+    <br /><br />
+    <input
+      type="text"
+      id="guess"
+      name="Guess"
+      onkeyup="value=value.replace(/[^\d]/g,'') "
+    />
+
+    <button id="submit">Submit</button><br /><br />
+    <table>
+      <thead>
+        <tr>
+          <td>Turn</td>
+          <td>Number</td>
+          <td>Result</td>
+        </tr>
+      </thead>
+      <tbody id="tbody"></tbody>
+    </table>
+    <script src="./index.js"></script>
+  </body>
+</html>

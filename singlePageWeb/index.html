@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>singlePageWeb</title>
+    <link rel="stylesheet" href="/style.css" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script>
+
+
+        $(document).ready(function () {
+            let mun_li = $("li").length;
+
+            for (i = 0; i <= mun_li; i++) {
+                $(".nav li:eq(" + i + ")").click({ id: i }, function (e) {
+                    $(".nav li").css("background-color", "white")
+                    page = e.data.id + 1;
+                    $("html,body").animate({ "scrollTop": $(".p0" + page).offset().top })
+                    $(".nav li:eq(" + e.data.id + ")").css("background-color", "#46dd46")
+                })
+            }
+
+            $(window).scroll(function () {
+                let nowpage = Math.round($(window).scrollTop() / $(".p02").offset().top)
+                $(".nav li").css("background-color", "white")
+                $(".nav li:eq(" + nowpage + ")").css("background-color", "#46dd46")
+                console.log("nowpage:" + nowpage)
+
+            })
+
+            //調整導覽列高度
+            center()
+
+            $(window).resize(function () {
+                center()
+            })
+            function center() {
+                pos = $(window).height / 2 - $(".nav").height / 2;
+                $(".nav").css = ("top", pos);
+            }
+        })
+    </script>
+</head>
+
+<body>
+    <div class="nav">
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    <div class="container">
+        <div class="p01" style="background-color: #46dd46;"></div>
+        <div class="p02"></div>
+        <div class="p03"></div>
+        <div class="p04"></div>
+        <div class="p05"></div>
+    </div>
+</body>
+
+</html>

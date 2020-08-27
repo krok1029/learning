@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>demo</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+      integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="d-flex">
+    <div class="player">
+      <h5>Player</h5>
+      <div class="my-4">
+        <button id="dispatch">發牌</button>
+        <button id="reset">重新開始</button>
+        <button id="over">不要了</button>
+      </div>
+
+      <h1 id="cards" class="cards my-1"></h1>
+      <h2 id="point" class="point my-1"></h2>
+      <h2 id="result" class="result my-1"></h2>
+    </div>
+
+    <div class="bank">
+      <h5>Banker</h5>
+      <h1 id="b-cards" class="cards my-1"></h1>
+      <h2 id="b-point" class="point my-1"></h2>
+      <h2 id="b-result" class="result my-1"></h2>
+    </div>
+    <script src="poker.min.js"></script>
+    <script src="index.js"></script>
+  </body>
+</html>

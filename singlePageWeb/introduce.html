@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>introduce</title>
+    <link rel="stylesheet" href="style_intro.css" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script>
+
+
+        $(document).ready(function () {
+            let mun_li = $("li").length;
+
+            for (i = 0; i <= mun_li; i++) {
+                $(".nav li:eq(" + i + ")").click({ id: i }, function (e) {
+                    $(".nav li").css("background-color", "white")
+                    page = e.data.id + 1;
+                    $("html,body").animate({ "scrollTop": $(".p0" + page).offset().top })
+                    $(".nav li:eq(" + e.data.id + ")").css("background-color", "#46dd46")
+                })
+            }
+
+            $(window).scroll(function () {
+                let nowpage = Math.round($(window).scrollTop() / $(".p02").offset().top)
+                $(".nav li").css("background-color", "white")
+                $(".nav li:eq(" + nowpage + ")").css("background-color", "#46dd46")
+                console.log("nowpage:" + nowpage)
+
+            })
+
+            //調整導覽列高度
+            center()
+
+            $(window).resize(function () {
+                center()
+            })
+            function center() {
+                pos = $(window).height / 2 - $(".nav").height / 2;
+                $(".nav").css = ("top", pos);
+            }
+        })
+    </script>
+</head>
+
+<body>
+    <div class="nav">
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    <div class="container">
+        <div class="p01 flex" memo="mainInfo" style="">
+            <div class="page1_l">
+                <div class="pic_mycat"></div>
+                <h2>李 明峯</h2>
+                <h3>Gandalf, LEE</h3>
+            </div>
+            <div class="page1_r flex">
+                <div class="box_p1">
+                    <h3>學經歷</h3>
+                    <p>成大工程科學系 畢業 <br>
+                        廣運機械系統開發部 工程師
+                    </p>
+                </div>
+                <div class="box_p1">
+                    <h3>專長</h3>
+                    <p>C++,C#,Python,Java,MS SQL,PL/SQL,ROS</p>
+                </div>
+                <div class="box_p1">
+                    <h3>興趣</h3>
+                    <p>電玩,漫畫,組裝模型</p>
+                </div>
+                <div class="box_p1">
+                    <h3>成為好友</h3>
+                    <div class="flex">
+                        <img src="./images/LINE_P20200804_182042256.jpg" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="p02 flex" memo="Portfolio">
+            <div class="page2_bg flex">
+                <h3 class="title">Portfloio</h3>
+                <div class="link_contant flex">
+                    <div class="p2_card">
+
+                        <a href="./Portfolio/mouse_move0729/index.html" class="port_link Portfolio_link1">
+                        </a>
+                        <h3>Mouse move</h3>
+                    </div>
+                    <div class="p2_card">
+                        <a href="./Portfolio/rocket animation/index.html" class="port_link Portfolio_link2"></a>
+                        <h3>rocket animation</h3>
+
+                    </div>
+                    <div class="p2_card">
+
+                        <a href="./Portfolio/slider/index.html" class="port_link Portfolio_link3"></a>
+                        <h3>slider</h3>
+                    </div>
+                    <div class="p2_card">
+
+                        <a href="./Portfolio/fallingLeaveanimation/index.html" class="port_link Portfolio_link4"></a>
+                        <h3>Falling Leaves</h3>
+                    </div>
+
+                </div>
+            </div>
+
+
+
+        </div>
+        <div class="p03"></div>
+        <div class="p04"></div>
+        <div class="p05"></div>
+    </div>
+</body>
+
+</html>
