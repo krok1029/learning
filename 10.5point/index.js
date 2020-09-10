@@ -132,25 +132,49 @@ document.getElementById('reset').addEventListener('click', () => {
   document.getElementById('result').innerHTML = '';
   document.getElementById('dispatch').disabled = false;
 });
+
+//banker's turn
 document.getElementById('over').addEventListener('click', () => {
-  getDataFromServer();
+  let keep = true;
+  // while (keep) {
+  //   getDataFromServer();
+  //   keep = getDataFromServer() ? true : false;
+  //   console.log(`keep=${keep}`);
+  //   setTimeout('', 2000);
+  // }
+    keep = getDataFromServer(cards) ? true : false;
+    console.log(`keep=${keep}`);
+    setTimeout('', 2000);
 });
 
-const getDataFromServer = async () => {
+const getDataFromServer = async (cards) => {
   try {
-    // 連接伺服器，同一台電腦上，得到回應值
-    const response = await fetch(
-      'http://localhost/practice/bankGetCard.php?total=3'
-    );
-
+    // ask server whether get another card 
+    const newData={cards};
+    // 連接伺服器
+    const cors = 'https://cors-anywhere.herokuapp.com/';
+    const url = 'http://localhost/practice/bankGetCard.php';
+    const response = await fetch(`${url}`, {
+      // 使用的方法
+      method: 'POST',
+      // 指示此資料為json格式
+      headers: new Headers({
+        Accept: 'application/json',
+        // 'Content-Type': 'application/json',
+      }),
+      // 傳送的主體資料(json格式)
+      body:encodeURI(JSON.stringify({
+        cards:cards
+        })),
+    })
     // 由response物件，剖析出json資料
     const data = await response.json();
+    console.log(data);
 
-    // 得到data資料，顯示在網頁上
-    document.getElementById('data-list').innerHTML = data
-      .map((v) => `<li>${v.text}</li>`)
-      .join('');
+    return false;
+
   } catch (error) {
     console.log(error);
+    return false;
   }
 };
