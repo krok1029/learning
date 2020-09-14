@@ -47,10 +47,52 @@ function setStartPoint(){
     nowR = 1;
 }
 function setEndPoint(){
-    const r =  getRandomInt(1,maxRows);
-    const c = getRandomInt(1,maxCols);
-    let end = '#r'+r+'c'+c;
-    $(end).html('<small>end</small>');
+    let r = 0;
+    let c = 0;
+
+    r =  getRandomInt(1,maxRows);
+    c = getRandomInt(1,maxCols);
+    // console.log(wallCount(r,c));
+    while(1){
+        r =  getRandomInt(1,maxRows);
+        c = getRandomInt(1,maxCols);
+        // console.log(wallCount(r,c));
+        if(wallCount(r,c)==3 && (r!=1 || c !=1)){
+            let end = '#r'+r+'c'+c;
+            $(end).html('<small>end</small>');
+            
+            break;
+        }
+        
+    }
+
+    // const r =  getRandomInt(1,maxRows);
+    // const c = getRandomInt(1,maxCols);
+    // let end = '#r'+r+'c'+c;
+    // $(end).html('<small>end</small>');
+}
+function wallCount(row,col){
+    let cell = '#r'+row+'c'+col;
+    let nowR2 = row+1;
+    let count = 4;
+    //上通
+    if($(cell).css("border-top-style")=="hidden"){
+        count--;
+    }
+    //下通
+    //$('#r'+nowR2+'c'+nowC).css("border-top-style")=="hidden"
+    if($('#r'+nowR2+'c'+col).css("border-top-style")=="hidden"){
+        count--;
+    }
+    //右通
+    if($(cell).css("border-right-style")=="hidden"){
+        count--;
+    }
+    //左通
+    if($(cell).prev().css("border-right-style")=="hidden"){
+        count--;
+    }
+    return count;
 }
 function getRandomInt(min, max) {
     min = Math.ceil(min);
@@ -77,24 +119,38 @@ function up(){
     if(nowR==1) return;
     var cell = '#r'+nowR+'c'+nowC;
     nowR-=1;
-    $(cell).css("background","none").parent().prev().find('#r'+nowR+'c'+nowC).css("background","lightblue");
+    //$(cell).css("border-top-style", "hidden");
+    if($(cell).css("border-top-style")=="hidden"){
+
+        $(cell).css("background","none").parent().prev().find('#r'+nowR+'c'+nowC).css("background","lightblue");
+    }
 }
 function down(){
     if(nowR==maxRows) return;
     var cell = '#r'+nowR+'c'+nowC;
-    nowR+=1;
-    $(cell).css("background","none").parent().next().find('#r'+nowR+'c'+nowC).css("background","lightblue");
+    nowR2 = nowR+1;
+    if($('#r'+nowR2+'c'+nowC).css("border-top-style")=="hidden"){
+        nowR+=1;
+        $(cell).css("background","none").parent().next().find('#r'+nowR+'c'+nowC).css("background","lightblue");
+    }
 }
 function right(){
     if(nowC==maxCols) return;
-	var cell = '#r'+nowR+'c'+nowC;
-    $(cell).css("background","none").next().css("background","lightblue");
-    nowC+=1;
+    var cell = '#r'+nowR+'c'+nowC;
+//    $(cell).css("border-right-style", "hidden");
+    if( $(cell).css("border-right-style")=="hidden"){
+
+        $(cell).css("background","none").next().css("background","lightblue");
+        nowC+=1;
+    }
 }
 function left(){
     if(nowC==1) return;
     var cell = '#r'+nowR+'c'+nowC;
-    $(cell).css("background","none").prev().css("background","lightblue");
-    nowC-=1;
+    if( $(cell).prev().css("border-right-style")=="hidden"){
+
+        $(cell).css("background","none").prev().css("background","lightblue");
+        nowC-=1;
+    }
 }
-$(document).ready(function () { CreateGrid(); });
+$(document).ready(function () { restart(); });
