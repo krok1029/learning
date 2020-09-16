@@ -118,9 +118,9 @@ function restart(){
 function up(){
     if(nowR==1) return;
     var cell = '#r'+nowR+'c'+nowC;
-    nowR-=1;
     //$(cell).css("border-top-style", "hidden");
     if($(cell).css("border-top-style")=="hidden"){
+        nowR-=1;
 
         $(cell).css("background","none").parent().prev().find('#r'+nowR+'c'+nowC).css("background","lightblue");
     }
