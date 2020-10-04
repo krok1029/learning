@@ -5,6 +5,7 @@ let nowC = 1;
 let nodeArr = [];
 let currentR = 1;
 let currentC = 1;
+let $ = $;
 class Node {
   constructor(row, col) {
     this.row = row;
@@ -164,7 +165,7 @@ function CreateMaze2() {
   let checkedPoint = 0;
   let dir;
 
-  startnode = createNode(currentR, currentC);
+  let startnode = createNode(currentR, currentC);
 
   checkedPoint++;
   nodeArr.push(startnode);
@@ -183,7 +184,7 @@ function CreateMaze2() {
       checkedPoint++;
     } else {
       if (nodeArr[nodeArr.length - 1].dir.length == 0) {
-        obj = nodeArr.pop();
+        nodeArr.pop();
         currentR = nodeArr[nodeArr.length - 1].row;
         currentC = nodeArr[nodeArr.length - 1].col;
       }
@@ -225,7 +226,7 @@ function setEndPoint() {
   r = getRandom(maxRows) + 1;
   c = getRandom(maxCols) + 1;
   // console.log(wallCount(r,c));
-  while (1) {
+  while (wallCount(r, c) < 1000) {
     r = getRandom(maxRows) + 1;
     c = getRandom(maxCols) + 1;
     if (wallCount(r, c) == 3 && (r != 1 || c != 1)) {
@@ -316,7 +317,7 @@ function up() {
 function down() {
   if (nowR == maxRows) return;
   var cell = '#r' + nowR + 'c' + nowC;
-  nowR2 = nowR + 1;
+  let nowR2 = nowR + 1;
   if ($('#r' + nowR2 + 'c' + nowC).css('border-top-style') == 'hidden') {
     nowR += 1;
     $(cell)
@@ -345,7 +346,7 @@ function left() {
   }
 }
 function pointCheck(cell) {
-  var cell = '#r' + nowR + 'c' + nowC;
+  cell = '#r' + nowR + 'c' + nowC;
   // console.log($(cell).html())
   if ($(cell).html() === '<small id="start">start</small>') {
     $(cell).css('background', 'wheat');

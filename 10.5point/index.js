@@ -31,7 +31,6 @@
 //     return Poker.getCardImage(150, this.flower, display);
 //   }
 // }
-
 // flower: h, d, s, c
 // point:[A,......., JOKER ]
 // 產生物件的工廠模式
@@ -142,17 +141,17 @@ document.getElementById('over').addEventListener('click', () => {
   //   console.log(`keep=${keep}`);
   //   setTimeout('', 2000);
   // }
-    keep = getDataFromServer(cards) ? true : false;
-    console.log(`keep=${keep}`);
-    setTimeout('', 2000);
+  keep = getDataFromServer(cards) ? true : false;
+  console.log(`keep=${keep}`);
+  setTimeout('', 2000);
 });
 
 const getDataFromServer = async (cards) => {
   try {
-    // ask server whether get another card 
-    const newData={cards};
+    // ask server whether get another card
+    //const newData = { cards };
     // 連接伺服器
-    const cors = 'https://cors-anywhere.herokuapp.com/';
+    // = 'https://cors-anywhere.herokuapp.com/';
     const url = 'http://localhost/practice/bankGetCard.php';
     const response = await fetch(`${url}`, {
       // 使用的方法
@@ -163,16 +162,17 @@ const getDataFromServer = async (cards) => {
         // 'Content-Type': 'application/json',
       }),
       // 傳送的主體資料(json格式)
-      body:encodeURI(JSON.stringify({
-        cards:cards
-        })),
-    })
+      body: encodeURI(
+        JSON.stringify({
+          cards: cards,
+        })
+      ),
+    });
     // 由response物件，剖析出json資料
     const data = await response.json();
     console.log(data);
 
     return false;
-
   } catch (error) {
     console.log(error);
     return false;
